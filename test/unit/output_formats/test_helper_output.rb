@@ -17,7 +17,7 @@ module OutputFormatTestHelper
       .stubs(:new)
       .returns(
         GeneratedImageStub.new(
-          name: 'generated.img', uri: 'good_url', width: 999
+          name: 'generated.img', uri: 'good_url', width: 999, source_width: 1500, source_height: 1000
         )
       )
   end

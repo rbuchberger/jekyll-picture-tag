@@ -242,6 +242,11 @@ module JekyllStub
             }
           }
 
+        },
+
+        'svg_placeholder' => {
+          'svg_placeholder' => true,
+          'markup' => 'data_auto'
         }
       },
 

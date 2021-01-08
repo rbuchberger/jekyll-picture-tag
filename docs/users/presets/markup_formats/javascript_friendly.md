@@ -12,7 +12,7 @@ loading](https://github.com/verlok/lazyload).
 - `data_picture`
 
   ```html
-    <picture> 
+    <picture>
       <source data-srcset="..." data-sizes="...">
       <source data-srcset="..." data-sizes="...">
       (...)
@@ -55,3 +55,12 @@ The following preset settings only apply to these output formats.
 
   This option sets whether you would like JPT's auto-generated sizes to be returned as a
   `data-sizes` attribute or a normal `sizes` attribute.
+
+- `svg_placeholder`
+
+  _Format:_ `svg_placeholder: true|false`
+
+  _Default:_ `false`
+
+  Sets the `src` attribute to a base64 encoded SVG, which is a simple transparent box with the
+  correct aspect ratio. This is another method to prevent page reflow when loading images.

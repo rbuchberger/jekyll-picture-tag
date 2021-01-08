@@ -49,4 +49,18 @@ class TestDataImg < Minitest::Test
 
     assert_equal correct, @tested.to_s
   end
+
+  def test_svg_placeholder
+    PictureTag.stubs(preset: { 'svg_placeholder' => true })
+
+    svg = Object.new
+    Victor::SVG.stubs(:new)
+               .with(has_entries(width: 1500, height: 1000))
+               .returns(svg)
+
+    svg.stubs(:render).returns("I'm an SVG!")
+    Base64.stubs(:encode64).with("I'm an SVG!").returns("I'm a base64 encoded SVG!")
+
+    assert_match "data:image/svg+xml;base64,I'm a base64 encoded SVG!", @tested.to_s
+  end
 end

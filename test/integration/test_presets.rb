@@ -1,5 +1,6 @@
 require_relative './test_integration_helper'
 require 'mini_magick'
+require 'base64'
 
 # This class focuses on testing various output formats and their configurations.
 # The preset names are defined in test/stubs/jekyll.rb
@@ -339,5 +340,14 @@ class TestIntegrationPresets < Minitest::Test
     assert_silent do
       tested 'calculated_quality_reverse rms.jpg'
     end
+  end
+
+  def test_svg_placeholder
+    output = tested 'svg_placeholder rms.jpg'
+
+    svg_prefix = 'data:image/svg+xml;base64,'
+    src = output.at_css('img')['src']
+    assert_match svg_prefix, src
+    assert_match '<svg', Base64.decode64(src.delete_prefix(svg_prefix))
   end
 end
